@@ -18,7 +18,7 @@ run sed -i "s|expose_php = On|expose_php = Off|g" /etc/php5/apache2/php.ini
 run sed -i "s|allow_url_fopen = On|allow_url_fopen = Off|g" /etc/php5/apache2/php.ini
 
 workdir /tmp
-run git clone -b branch https://github.com/pratheeshts0/newword.git
+run git clone -b biz-wp-qa https://github.com/pratheeshts0/newword.git
 workdir /tmp/newword
 
 run cp wp-config-sample.php wp-config.php
@@ -31,7 +31,7 @@ run rsync -avP /tmp/newword/ /var/www/html/wordpress/
 run mkdir /etc/apache2/ssl
 workdir /etc/secure1
 
-run git clone -b file https://github.com/pratheeshts0/newword.git
+run git clone -b biz-wp-qa https://github.com/pratheeshts0/newword.git
 run cp /etc/secure1/newword/secure.conf /etc/apache2/sites-available/
 run cp /etc/secure1/newword/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/newword/apache.crt /etc/apache2/ssl/
