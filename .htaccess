@@ -1,5 +1,0 @@
-AuthUserFile /var/www/html/wordpress/.htpasswd
-AuthName "Authorization Required"
-AuthType Basic
-require valid-user
-
