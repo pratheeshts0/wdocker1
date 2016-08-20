@@ -18,7 +18,7 @@ run sed -i "s|expose_php = On|expose_php = Off|g" /etc/php5/apache2/php.ini
 run sed -i "s|allow_url_fopen = On|allow_url_fopen = Off|g" /etc/php5/apache2/php.ini
 
 workdir /tmp
-run git clone -b biz-wp-qa https://github.com/pratheeshts0/wdockerq.git
+run git clone -b biz-wp-qa https://github.com/pratheeshts0/wdocker1.git
 workdir /tmp/wdocker1
 
 run cp wp-config-sample.php wp-config.php
