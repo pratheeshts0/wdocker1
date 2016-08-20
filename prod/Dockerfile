@@ -37,8 +37,8 @@ run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
 run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
 
-add .htaccess /var/www/html/wordpress/
-add .htpasswd /var/www/html/wordpress/
+run cp /etc/secure1/wdocker1/.htaccess /var/www/html/wordpress/
+run cp /etc/secure1/wdocker1/.htpasswd /var/www/html/wordpress/
 
 workdir /root
 run a2ensite secure.conf 
