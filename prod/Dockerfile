@@ -18,7 +18,7 @@ run sed -i "s|expose_php = On|expose_php = Off|g" /etc/php5/apache2/php.ini
 run sed -i "s|allow_url_fopen = On|allow_url_fopen = Off|g" /etc/php5/apache2/php.ini
 
 workdir /tmp
-run git clone -b branch https://github.com/pratheeshts0/wdocker1.git
+run git clone https://github.com/pratheeshts0/wdocker1.git
 workdir /tmp/wdocker1
 
 run cp wp-config-sample.php wp-config.php
@@ -31,7 +31,7 @@ run rsync -avP /tmp/wdocker1/ /var/www/html/wordpress/
 run mkdir /etc/apache2/ssl
 workdir /etc/secure1
 
-run git clone -b file https://github.com/pratheeshts0/wdocker1.git
+run git clone https://github.com/pratheeshts0/wdocker1.git
 run cp /etc/secure1/wdocker1/secure.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
