@@ -4,7 +4,6 @@ run apt-get -y update
 run apt-get -y install apache2 
 run apt-get -y install php5 
 run apt-get -y install libapache2-mod-php5 
-#run apt-get -y install php5-gd 
 run apt-get -y install php5-curl 
 run apt-get -y install libssh2-php
 run apt-get -y install rsync 
