@@ -11,7 +11,8 @@ run apt-get -y install rsync
 run apt-get -y install php5-mysql
 run apt-get -y install php5-fpm
 run apt-get -y install openssh-client=1:6.6p1-2ubuntu1
-run apt-get install -y git 
+run apt-get -y install git
+run apt-get -y install unzip
 run mkdir /var/www/html/wordpress
 
 run sed -i "s|expose_php = On|expose_php = Off|g" /etc/php5/apache2/php.ini
