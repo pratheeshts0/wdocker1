@@ -36,7 +36,7 @@ run cp /etc/secure1/wdocker1/secure.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
 run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
-workdir /etc/secure1/wpcontent
+workdir /etc/secure1/wp-content
 run unzip plugins/*.zip
 run chown -R www-data:www-data plugins
 run rm plugins/*.zip
