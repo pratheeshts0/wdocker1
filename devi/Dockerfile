@@ -4,7 +4,7 @@ run apt-get -y update
 run apt-get -y install apache2 
 run apt-get -y install php5 
 run apt-get -y install libapache2-mod-php5 
-run apt-get -y install php5-gd 
+#run apt-get -y install php5-gd 
 run apt-get -y install php5-curl 
 run apt-get -y install libssh2-php
 run apt-get -y install rsync 
@@ -37,6 +37,8 @@ run cp /etc/secure1/wdocker1/secure.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
 run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
+run find /etc/secure1/wdocker1/wp-content/plugins/*.zip -exec unzip {} \; || pwd
+run rm -r /etc/secure1/wdocker1/wp-content/plugins/*.zip || pwd
 
 workdir /root
 run a2ensite secure.conf 
