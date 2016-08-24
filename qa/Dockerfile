@@ -45,4 +45,4 @@ run a2enmod ssl
 run chown -R www-data:www-data /var/www/html/
 run chmod 755 -R /var/www/html/
 expose 80 443
-entrypoint service apache2 restart && service php5-fpm restart && bash
+entrypoint service apache2 restart && service php5-fpm restart && bash &&
