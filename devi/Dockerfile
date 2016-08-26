@@ -22,8 +22,8 @@ run git clone -b biz-wp-dev https://github.com/pratheeshts0/wdocker1.git
 workdir /tmp/wdocker1
 
 run cp wp-config-sample.php wp-config.php
-run sed -i "s|define('DB_NAME', 'database_name_here');|define('DB_NAME', 'wordpress');|g" wp-config.php
-run sed -i "s|define('DB_USER', 'username_here');|define('DB_USER', 'wordpressuser');|g" wp-config.php
+run sed -i "s|define('DB_NAME', 'database_name_here');|define('DB_NAME', 'wordpress1');|g" wp-config.php
+run sed -i "s|define('DB_USER', 'username_here');|define('DB_USER', 'wordpressuser1');|g" wp-config.php
 run sed -i "s|define('DB_PASSWORD', 'password_here');|define('DB_PASSWORD', 'password');|g" wp-config.php
 run sed -i "s|define('DB_HOST', 'localhost');|define('DB_HOST', '192.168.1.235');|g" wp-config.php
 run sed -i "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php5/fpm/php.ini
