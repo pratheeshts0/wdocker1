@@ -36,7 +36,7 @@ run cp /etc/secure1/wdocker1/secure.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
 run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
-run workdir /etc/secure1/wdocker1/wp-content/plugins
+workdir /etc/secure1/wdocker1/wp-content/plugins
 run find /etc/secure1/wdocker1/wp-content/plugins/*.zip -exec unzip {} \; || pwd
 run rm -r /etc/secure1/wdocker1/wp-content/plugins/*.zip || pwd
 
