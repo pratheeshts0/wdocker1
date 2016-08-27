@@ -22,16 +22,16 @@ run sed -i "s|allow_url_fopen = On|allow_url_fopen = Off|g" /etc/php5/apache2/ph
 
 workdir /tmp
 run git clone https://github.com/pratheeshts0/wdocker1.git
-workdir /tmp/biz-wp/wp-content/plugins
+workdir /tmp/wdocker1/wp-content/plugins
 
-run find /tmp/biz-wp/wp-content/plugins/*.zip -exec unzip {} \; || pwd
-run rm -r /tmp/biz-wp/wp-content/plugins/*.zip || pwd
-workdir /tmp/biz-wp
+run find /tmp/wdocker1/wp-content/plugins/*.zip -exec unzip {} \; || pwd
+run rm -r /tmp/wdocker1/wp-content/plugins/*.zip || pwd
+workdir /tmp/wdocker1
 
-run cp /tmp/biz-wp/secure.conf /etc/apache2/sites-available/ && rm /tmp/biz-wp/secure.conf
-run cp /tmp/biz-wp/redirection.conf /etc/apache2/sites-available/ && rm /tmp/biz-wp/redirection.conf
-run cp /tmp/biz-wp/apache.crt /etc/apache2/ssl/ && rm /tmp/biz-wp/apache.crt
-run cp /tmp/biz-wp/apache.key /etc/apache2/ssl/ && rm /tmp/biz-wp/apache.key
+run cp /tmp/wdocker1/secure.conf /etc/apache2/sites-available/ && rm /tmp/wdocker1/secure.conf
+run cp /tmp/wdocker1/redirection.conf /etc/apache2/sites-available/ && rm /tmp/wdocker1/redirection.conf
+run cp /tmp/wdocker1/apache.crt /etc/apache2/ssl/ && rm /tmp/wdocker1/apache.crt
+run cp /tmp/wdocker1/apache.key /etc/apache2/ssl/ && rm /tmp/wdocker1/apache.key
 
 run cp wp-config-sample.php wp-config.php
 run sed -i "s|define('DB_NAME', 'database_name_here');|define('DB_NAME', 'wordpress');|g" wp-config.php
