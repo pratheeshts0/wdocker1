@@ -39,7 +39,7 @@ run sed -i "s|define('DB_USER', 'username_here');|define('DB_USER', 'wordpressus
 run sed -i "s|define('DB_PASSWORD', 'password_here');|define('DB_PASSWORD', 'password');|g" wp-config.php
 run sed -i "s|define('DB_HOST', 'localhost');|define('DB_HOST', '192.168.1.235');|g" wp-config.php
 run sed -i "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php5/fpm/php.ini
-run rsync -avP /tmp/biz-wp/ /var/www/html/wordpress/
+run rsync -avP /tmp/wdocker1/ /var/www/html/wordpress/
 
 workdir /root
 run a2ensite secure.conf
