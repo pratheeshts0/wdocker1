@@ -1,25 +1,37 @@
 from ubuntu:14.04 
 maintainer pratheesh
-run apt-get -y update  
-run apt-get -y install apache2 
-run apt-get -y install php5 
-run apt-get -y install libapache2-mod-php5 
-run apt-get -y install php5-curl 
+run apt-get -y update
+run apt-get -y install apache2
+
+run apt-get -y install php5
+run apt-get -y install libapache2-mod-php5
+#run apt-get -y install php5-gd
+run apt-get -y install php5-curl
 run apt-get -y install libssh2-php
-run apt-get -y install rsync 
+run apt-get -y install rsync
 run apt-get -y install php5-mysql
 run apt-get -y install php5-fpm
 run apt-get -y install openssh-client=1:6.6p1-2ubuntu1
-run apt-get install -y git 
-run apt-get install -y unzip
-run mkdir /var/www/html/wordpress
+run apt-get -y install git
+run apt-get -y install unzip
+run apt-get -y install nano
+run mkdir /var/www/html/wordpress /etc/apache2/ssl
 
 run sed -i "s|expose_php = On|expose_php = Off|g" /etc/php5/apache2/php.ini
 run sed -i "s|allow_url_fopen = On|allow_url_fopen = Off|g" /etc/php5/apache2/php.ini
 
 workdir /tmp
 run git clone https://github.com/pratheeshts0/wdocker1.git
-workdir /tmp/wdocker1
+workdir /tmp/biz-wp/wp-content/plugins
+
+run find /tmp/biz-wp/wp-content/plugins/*.zip -exec unzip {} \; || pwd
+run rm -r /tmp/biz-wp/wp-content/plugins/*.zip || pwd
+workdir /tmp/biz-wp
+
+run cp /tmp/biz-wp/secure.conf /etc/apache2/sites-available/ && rm /tmp/biz-wp/secure.conf
+run cp /tmp/biz-wp/redirection.conf /etc/apache2/sites-available/ && rm /tmp/biz-wp/redirection.conf
+run cp /tmp/biz-wp/apache.crt /etc/apache2/ssl/ && rm /tmp/biz-wp/apache.crt
+run cp /tmp/biz-wp/apache.key /etc/apache2/ssl/ && rm /tmp/biz-wp/apache.key
 
 run cp wp-config-sample.php wp-config.php
 run sed -i "s|define('DB_NAME', 'database_name_here');|define('DB_NAME', 'wordpress');|g" wp-config.php
@@ -27,28 +39,16 @@ run sed -i "s|define('DB_USER', 'username_here');|define('DB_USER', 'wordpressus
 run sed -i "s|define('DB_PASSWORD', 'password_here');|define('DB_PASSWORD', 'password');|g" wp-config.php
 run sed -i "s|define('DB_HOST', 'localhost');|define('DB_HOST', '192.168.1.235');|g" wp-config.php
 run sed -i "s|;cgi.fix_pathinfo=1|cgi.fix_pathinfo=0|g" /etc/php5/fpm/php.ini
-run rsync -avP /tmp/wdocker1/ /var/www/html/wordpress/
-run mkdir /etc/apache2/ssl
-workdir /etc/secure1
-
-run git clone https://github.com/pratheeshts0/wdocker1.git
-run cp /etc/secure1/wdocker1/secure.conf /etc/apache2/sites-available/
-run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
-run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
-run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
-workdir /etc/secure1/wdocker1/wp-content/plugins
-run chown -R www-data:www-data /etc/secure1/wdocker1/wp-content/plugins
-run chmod 777 -R /etc/secure1/wdocker1/wp-content/plugins
-run find /etc/secure1/wdocker1/wp-content/plugins/*.zip -exec unzip {} \; || pwd
-run rm -r /etc/secure1/wdocker1/wp-content/plugins/*.zip || pwd
-
+run rsync -avP /tmp/biz-wp/ /var/www/html/wordpress/
 
 workdir /root
-run a2ensite secure.conf 
+run a2ensite secure.conf
 run a2ensite redirection.conf
 run a2enmod dir
 run a2enmod ssl
+run a2enmod rewrite
+run a2dissite 000-default.conf
 run chown -R www-data:www-data /var/www/html/
-run chmod 777 -R /var/www/html/
+run chmod 755 -R /var/www/html/
 expose 80 443
-entrypoint service apache2 restart && service php5-fpm restart && bash && tail -f /dev/null
+entrypoint service apache2 restart && service php5-fpm restart && tail -f /dev/null && bash
