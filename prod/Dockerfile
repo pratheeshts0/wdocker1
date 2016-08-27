@@ -37,6 +37,8 @@ run cp /etc/secure1/wdocker1/redirection.conf /etc/apache2/sites-available/
 run cp /etc/secure1/wdocker1/apache.crt /etc/apache2/ssl/
 run cp /etc/secure1/wdocker1/apache.key /etc/apache2/ssl/
 workdir /etc/secure1/wdocker1/wp-content/plugins
+run chown -R www-data:www-data /etc/secure1/wdocker1/wp-content/plugins
+run chmod 777 -R /etc/secure1/wdocker1/wp-content/plugins
 run find /etc/secure1/wdocker1/wp-content/plugins/*.zip -exec unzip {} \; || pwd
 run rm -r /etc/secure1/wdocker1/wp-content/plugins/*.zip || pwd
 
@@ -47,6 +49,6 @@ run a2ensite redirection.conf
 run a2enmod dir
 run a2enmod ssl
 run chown -R www-data:www-data /var/www/html/
-run chmod 755 -R /var/www/html/
+run chmod 777 -R /var/www/html/
 expose 80 443
 entrypoint service apache2 restart && service php5-fpm restart && bash && tail -f /dev/null
